@@ -1,11 +1,23 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+@model Vendor
 
-namespace BakeryVendor.Views.Vendor;
-
-public class Create : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = @Model.name;
 }
+
+<div>
+    <h1>DETAILS</h1>
+    @Model.name
+    @Model.description
+    <h3>ORDERS</h3>
+    @foreach (var item in @Model.orders)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Date</td>
+        </tr>
+    }
+    <p>@Html.ActionLink("Add New Order", "CreateOrder", new {vendorId = Model.id})</p>
+</div>

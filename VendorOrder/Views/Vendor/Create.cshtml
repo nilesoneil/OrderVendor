@@ -8,9 +8,8 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.name)
-    @Html.TextBoxFor(model => model.description)
-    
+    @Html.TextBoxFor(model => model.name)<br/>
+    @Html.TextBoxFor(model => model.description)<br/>
     <input type="submit" value="Add new vendor" class="btn btn-default" />
 }
 <p>@Html.ActionLink("Show all Vendors", "Index")</p>

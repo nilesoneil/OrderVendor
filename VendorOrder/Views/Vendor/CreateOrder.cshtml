@@ -1,0 +1,17 @@
+@{
+    Layout = "_Layout";
+}
+
+@model Order
+
+<h4>Add a new Order</h4>
+
+@using (Html.BeginForm("CreateOrder", "Vendor", new{vendorId = @ViewBag.vendorId}))
+{   
+    @Html.TextBoxFor(model => model.Title)<br/>
+    @Html.TextBoxFor(model => model.Description)<br/>
+    @Html.TextBoxFor(model => model.Price)<br/>
+    @Html.TextBoxFor(model => model.Date)<br/>          
+    <input type="submit" value="Add new Order" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Return to Vendor", "Index", new { vendorId = @ViewBag.vendorId })</p>

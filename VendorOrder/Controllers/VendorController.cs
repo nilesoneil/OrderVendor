@@ -5,61 +5,61 @@ namespace VendorOrder.Controllers;
 
 public class VendorController : Controller
 {
-  private readonly VendorContext _db;
-  public VendorController(VendorContext ctx)
-  {
-    _db = ctx;
-  }
-
-  [Route("vendor")]
-  public IActionResult Index()
-  {
-    return View(_db.GetAllVendors());
-  }
-  [Route("Vendor/{vendorId}")]
-  public IActionResult Details(int vendorId)
-  {
-    Vendor vendor = _db.GetVendorById(vendorId);
-    if (vendor != null)
+    private readonly ILogger<VendorController> _logger;
+    private readonly VendorContext _db;
+    public VendorController(ILogger<VendorController> logger, VendorContext ctx)
     {
-      return View(vendor);
+        _logger = logger;
+        _db = ctx;
     }
-    return NotFound();
-  }
-
-  [Route("vendor/{vendorId}/order")]
-  public IActionResult GetOrders(int vendorId)
-  {
-    Vendor vendor = _db.GetVendorById(vendorId);
-    if (vendor != null)
+    
+    [Route("vendor")]
+    public IActionResult Index()
     {
-      return View(vendor);
+        return View(_db.GetAllVendors());
     }
-    return NotFound();
-  }
-
-  [HttpPost]
-  public IActionResult Create(Vendor vendor)
-  {
-    _db.AddToVendors(vendor);
-    return RedirectToAction("Index");
-  }
-
-  public ActionResult Create()
-  {
-    return View();
-  }
-
-  [HttpPost]
-  [Route("vendor/{vendorId}/order")]
-  public IActionResult CreateOrder(int vendorId, Order order)
-  {
-    Vendor vendor = _db.GetVendorById(vendorId);
-    if (vendor == null)
+    [Route("Vendor/{vendorId}")]
+    public IActionResult Details(int vendorId)
     {
-      return NotFound();
+        var vendor = _db.GetVendorById(vendorId);
+        if (vendor != null)
+        {
+            return View(vendor);
+        }
+        return NotFound();
     }
-    vendor.orders.Add(order);
-    return Ok();
-  }
+
+    [HttpPost]
+    [Route("vendor/create")]
+    public IActionResult Create(Vendor vendor)
+    {
+        _db.AddToVendors(vendor);
+        return RedirectToAction("Index");    
+    }
+
+    [Route("vendor/create")]
+    public ActionResult Create()
+    {
+        return View();
+    }
+    
+    [Route("vendor/{vendorId}/order")]
+    public ActionResult CreateOrder(int vendorId)
+    {
+        ViewBag.vendorId = vendorId;
+        return View();
+    }
+
+    [HttpPost]
+    [Route("vendor/{vendorId}/order")]
+    public IActionResult CreateOrder(int vendorId, Order order)
+    {
+        var vendor = _db.GetVendorById(vendorId);
+        if (vendor == null)
+        {
+            return NotFound();
+        }
+        vendor.orders.Add(order);
+        return RedirectToAction("Details", new {vendorId = vendorId});  
+    }
 }

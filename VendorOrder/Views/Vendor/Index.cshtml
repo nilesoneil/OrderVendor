@@ -3,12 +3,6 @@
 }
 @model List<Vendor>
 <!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
 <div>
     <table>
         <tbody>
@@ -17,12 +11,10 @@
             <tr>
                 <td>@item.name</td>
                 <td>@item.description</td>
-                <td>@Html.ActionLink("Details", "GetOrders", new { vendorId = item.id })</td>
+                <td>@Html.ActionLink("Details", "Details", new {vendorId = item.id})</td>
             </tr>
         }
         </tbody>
     </table>
     <p>@Html.ActionLink("Add New Vendor", "Create")</p>
 </div>
-</body>
-</html>

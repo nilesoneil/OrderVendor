@@ -1,0 +1,28 @@
+@{
+    Layout = "_Layout";
+}
+@model List<Vendor>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    <table>
+        <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.description</td>
+                <td>@Html.ActionLink("Details", "GetOrders", new { vendorId = item.id })</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <p>@Html.ActionLink("Add New Vendor", "Create")</p>
+</div>
+</body>
+</html>

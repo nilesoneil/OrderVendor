@@ -7,9 +7,9 @@ namespace VendorOrder.Models
     public string Title { get; }
     public string Description { get;  }
     public float Price { get; }
-    public DateTime Date { get; }
+    public string Date { get; }
 
-    public Order(string title, string description, float price, DateTime date)
+    public Order(string title, string description, float price, string date)
     {
       Title = title;
       Description = description;

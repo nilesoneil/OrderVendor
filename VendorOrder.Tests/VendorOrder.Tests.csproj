@@ -11,6 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VendorOrder\VendorOrders.csproj
-
+    <ProjectReference Include="..\VendorOrder\VendorOrders.csproj"/>
+  </ItemGroup>
 </Project>

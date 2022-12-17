@@ -5,11 +5,9 @@ namespace VendorOrder.Controllers;
 
 public class VendorController : Controller
 {
-  private readonly ILogger<VendorController> _logger;
   private readonly VendorContext _db;
-  public VendorController(ILogger<VendorController> logger, VendorContext ctx)
+  public VendorController(VendorContext ctx)
   {
-    _logger = logger;
     _db = ctx;
   }
 
@@ -19,9 +17,9 @@ public class VendorController : Controller
     return View(_db.GetAllVendors());
   }
   [Route("Vendor/{vendorId}")]
-  public IActionResult Details(int vendorId);
+  public IActionResult Details(int vendorId)
   {
-    Vendor = _db.GetVendorById(vendorId);
+    Vendor vendor = _db.GetVendorById(vendorId);
     if (vendor != null)
     {
       return View(vendor);
@@ -32,7 +30,7 @@ public class VendorController : Controller
   [Route("vendor/{vendorId}/order")]
   public IActionResult GetOrders(int vendorId)
   {
-    Vendor = _db.GetVendorById(vendorId);
+    Vendor vendor = _db.GetVendorById(vendorId);
     if (vendor != null)
     {
       return View(vendor);
@@ -56,7 +54,7 @@ public class VendorController : Controller
   [Route("vendor/{vendorId}/order")]
   public IActionResult CreateOrder(int vendorId, Order order)
   {
-    Vendor = _db.GetVendorById(vendorId);
+    Vendor vendor = _db.GetVendorById(vendorId);
     if (vendor == null)
     {
       return NotFound();

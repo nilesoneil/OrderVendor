@@ -6,12 +6,27 @@
 
 <h4>Add a new Order</h4>
 
-@using (Html.BeginForm("CreateOrder", "Vendor", new{vendorId = @ViewBag.vendorId}))
-{   
-    @Html.TextBoxFor(model => model.Title)<br/>
-    @Html.TextBoxFor(model => model.Description)<br/>
-    @Html.TextBoxFor(model => model.Price)<br/>
-    @Html.TextBoxFor(model => model.Date)<br/>          
-    <input type="submit" value="Add new Order" class="btn btn-default" />
+@using (Html.BeginForm("CreateOrder", "Vendor", new {vendorId = @ViewBag.vendorId}))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title, new {@class = "form-control", @placeholder = "Title"})<br/>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new {@class = "form-control", @placeholder = "Description"})<br/>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        @Html.TextBoxFor(model => model.Price, new {@class = "form-control", @placeholder = "Price"})<br/>
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(model => model.Date)
+    @Html.TextBoxFor(model => model.Date, new {@class = "form-control", @placeholder = "Date"})<br/>
+    </div>
+    <input type="submit" value="Add new Order" class="btn btn-primary"/>
+    @Html.ActionLink("Return to Vendor", "Index", new {vendorId = @ViewBag.vendorId}, new {@class = "btn btn-link"})
 }
-<p>@Html.ActionLink("Return to Vendor", "Index", new { vendorId = @ViewBag.vendorId })</p>
+<div class="container">
+    
+</div>

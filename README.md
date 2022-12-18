@@ -24,7 +24,7 @@ _Open via Bash/GitBash/GitHub;_
 * Click the green "Clone or download" button at the right of the screen.
 * Select "Download ZIP."
 * Use a file extractor or unzip program  (WinZip, Zipware, or 7-ZIP) to extract the ZIP files onto your computer.
-* In your browser, navigate to https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-5.0.408-macos-x64-installer for Mac or https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-5.0.408-windows-x64-installer for Windows. Click the link "click here to download manually" if the download for .NET Core 6.0. SDK does not start automatically.
+* In your browser, navigate to https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.404-windows-x64-installer Click the link "click here to download manually" if the download for .NET Core 6.0. SDK does not start automatically.
 * Double-click the downloaded .NET Core 6.0.0 SDK file and run the installer.
 * Open your computer's terminal and navigate to the directory bearing the name of the program and containing the top level subdirectories and files.
 * Enter the command "dotnet build" in the terminal.
